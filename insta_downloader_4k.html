@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171326"><title>Insta Downloader 4K</title>
+<style>
+:root{color-scheme:dark;--bg:#100d1b;--panel:#1c1730;--muted:#aaa2bd;--line:#39304f;--pink:#ff4d91;--violet:#8b5cf6}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#39204f 0,transparent 42%),var(--bg);color:#fff;font:16px system-ui,Arial}
+main{max-width:520px;margin:auto;padding:26px 18px 40px}.logo{display:flex;align-items:center;gap:12px;margin:10px 0 28px}.mark{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--pink),var(--violet));display:grid;place-items:center;font-size:25px}
+h1{font-size:24px;margin:0} .sub{color:var(--muted);font-size:13px;margin-top:3px}
+.hero{padding:23px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#251b3b,#191528);box-shadow:0 18px 50px #0005}
+.tag{display:inline-block;color:#ffc4dc;background:#57234466;border:1px solid #8d3b68;padding:5px 10px;border-radius:30px;font-size:11px;font-weight:700;letter-spacing:.6px}
+h2{font-size:22px;margin:15px 0 6px}.desc{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 20px}
+label{display:block;font-size:13px;color:#ddd5ec;margin:15px 0 8px}
+input,select{width:100%;background:#100d1b;border:1px solid var(--line);color:#fff;border-radius:13px;padding:15px;font:inherit;outline:none}
+input:focus,select:focus{border-color:var(--pink)}
+button{width:100%;border:0;border-radius:13px;padding:15px;margin-top:14px;background:linear-gradient(100deg,var(--pink),var(--violet));color:white;font-weight:750;font-size:15px}
+button:disabled{opacity:.5}
+.quality{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.quality label{margin:0;position:relative}.quality input{position:absolute;opacity:0}.quality span{display:block;text-align:center;border:1px solid var(--line);border-radius:12px;padding:12px 4px;background:#100d1b}.quality input:checked+span{border-color:var(--pink);background:#56234455}
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}.feature{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:15px}.feature b{display:block;margin-top:8px;font-size:14px}.feature small{color:var(--muted)}
+.notice{font-size:12px;line-height:1.55;color:var(--muted);background:#191526;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:18px}
+#status{margin-top:14px;font-size:13px;line-height:1.5;overflow-wrap:anywhere}a{color:#ffc0dc}
+footer{text-align:center;color:#756d87;font-size:11px;margin-top:25px}
+</style>
+</head>
+<body><main>
+<header class="logo"><div class="mark">↓</div><div><h1>Insta Downloader 4K</h1><div class="sub">Reels • Videos • Stories • Photos</div></div></header>
+<section class="hero">
+<span class="tag">FAST • SIMPLE • MOBILE FRIENDLY</span>
+<h2>Instagram Media Downloader</h2>
+<p class="desc">तुमची परवानगी असलेली Instagram मीडिया लिंक किंवा थेट मीडिया URL वापरा.</p>
+<label for="url">Instagram / Media URL</label>
+<input id="url" type="url" placeholder="https://www.instagram.com/reel/..." autocomplete="url">
+<label>Download Quality</label>
+<div class="quality">
+<label><input type="radio" name="quality" value="720" checked><span>720p</span></label>
+<label><input type="radio" name="quality" value="1080"><span>1080p</span></label>
+<label><input type="radio" name="quality" value="4k"><span>4K</span></label>
+</div>
+<button id="go">लिंक तपासा / Download</button>
+<div id="status" role="status"></div>
+</section>
+<div class="features">
+<div class="feature">🎬<b>Reels & Videos</b><small>मूळ उपलब्ध गुणवत्ता</small></div>
+<div class="feature">⭕<b>Stories</b><small>फक्त अधिकृत प्रवेश असलेली</small></div>
+<div class="feature">🖼️<b>Photos</b><small>मूळ इमेज फाइल</small></div>
+<div class="feature">📱<b>Mobile Friendly</b><small>Android आणि Desktop</small></div>
+</div>
+<div class="notice"><b>महत्त्वाचे:</b> Instagram share link वरून थेट डाउनलोड करण्यासाठी सुरक्षित backend/API आवश्यक आहे. हा HTML फ्रंटएंड स्वतः Instagram चे लॉगिन, private account किंवा इतरांच्या Stories bypass करत नाही. तुमच्या स्वतःच्या Creator अकाउंटसाठी Meta च्या अधिकृत API वापरा. 4K पर्याय म्हणजे 4K फाइल उपलब्ध असल्यासच; कमी रिझोल्यूशनला खरे 4K बनवता येत नाही.</div>
+<footer>फक्त स्वतःची किंवा डाउनलोड करण्याची परवानगी असलेली सामग्री वापरा.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+$('go').addEventListener('click',async()=>{
+ const raw=$('url').value.trim(), status=$('status');
+ if(!raw){status.textContent='कृपया लिंक पेस्ट करा.';return}
+ let u;try{u=new URL(raw)}catch{status.textContent='वैध URL टाका.';return}
+ if(!['instagram.com','www.instagram.com','m.instagram.com','cdninstagram.com','fbcdn.net'].some(d=>u.hostname===d||u.hostname.endsWith('.'+d))){status.textContent='कृपया Instagram किंवा थेट media URL वापरा.';return}
+ const quality=document.querySelector('input[name="quality"]:checked').value;
+ // Direct media URLs can be downloaded by the browser. Instagram share URLs need a compliant server endpoint.
+ if(/\.(mp4|jpg|jpeg|png|webp)(\?|$)/i.test(u.href)){
+   const a=document.createElement('a');a.href=u.href;a.download='instagram-media';a.target='_blank';document.body.appendChild(a);a.click();a.remove();
+   status.textContent='डाउनलोड सुरू करण्याचा प्रयत्न केला. ब्राउझरने परवानगी न दिल्यास लिंक नवीन टॅबमध्ये उघडा.';return;
+ }
+ status.innerHTML='Instagram share link ओळखली. प्रत्यक्ष मीडिया मिळवण्यासाठी या अॅपला तुमच्या backend शी जोडणे आवश्यक आहे. <br><small>निवडलेली गुणवत्ता: '+quality+'p/4K</small><br><a href="https://developers.facebook.com/docs/instagram-platform/" target="_blank" rel="noopener">Meta Instagram API documentation</a>';
+});
+</script></body></html>
